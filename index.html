@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#174c43">
+    <meta name="description" content="A little less screen time, a little more crayon time. Pick an original drawing and download a free printable coloring page. No accounts, no uploads.">
+    <title>Little Lines | Kids Coloring Studio</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  </head>
+  <body>
+    <a class="skip-link" href="#studio">Skip to coloring studio</a>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Little Lines home"><span class="brand-mark" aria-hidden="true">✎</span> little lines<span class="brand-dot">.</span></a>
+      <span class="header-note">Small hands. Big imaginations.</span>
+      <a class="header-link" href="#print-guide">Printing tips <span aria-hidden="true">↗</span></a>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="intro-title">
+        <div class="intro-copy">
+          <p class="eyebrow"><span aria-hidden="true">✦</span> MADE FOR CRAYON TIME</p>
+          <h1 id="intro-title">A little outline.<br>A whole lot of <em>possibility.</em></h1>
+          <p>Pick a picture, make it your own, and print.<br>Let their imagination color the rest.</p>
+        </div>
+        <div class="intro-note"><span aria-hidden="true" class="sun">☀</span><strong>Less scrolling.<br>More scribbling.</strong><span>12 original drawings.<br>Endless colorful adventures.</span></div>
+      </section>
+      <section id="studio" class="workspace" aria-label="Coloring studio">
+        <div class="gallery-panel">
+          <div class="section-heading"><div><p class="eyebrow">01 / FIND A LITTLE INSPIRATION</p><h2>What shall we color?</h2></div><span id="design-count" class="count">12 designs</span></div>
+          <div id="categories" class="categories" role="group" aria-label="Filter designs by category"></div>
+          <div id="gallery" class="gallery" role="group" aria-label="Choose a coloring design"></div>
+          <p class="gallery-foot"><span aria-hidden="true">♡</span> Drawn from scratch. Ready for little artists.</p>
+        </div>
+        <div class="studio-panel">
+          <div class="section-heading"><div><p class="eyebrow">02 / MAKE IT YOURS</p><h2>Your creative corner</h2></div><span class="paper-badge" id="paper-badge">A4 · Portrait</span></div>
+          <div class="preview-desk"><div id="preview" class="preview" role="img" aria-label="Coloring page preview"></div><span class="desk-label">A blank page. A big adventure.</span></div>
+          <div class="design-heading"><h3 id="selected-name"></h3><span id="selected-category"></span></div>
+          <div class="controls">
+            <fieldset><legend>Detail level</legend><div class="segmented"><button type="button" data-detail="simple" aria-pressed="true">Little artists <small>Ages 3+ · simple</small></button><button type="button" data-detail="detailed" aria-pressed="false">Growing artists <small>Ages 6+ · more detail</small></button></div></fieldset>
+            <div class="line-control"><label for="line-weight">Outline thickness <output id="weight-value" for="line-weight">5</output></label><input id="line-weight" type="range" min="3" max="8" value="5" step="1"><div class="range-labels"><span>Fine</span><span>Bold</span></div></div>
+            <div class="extra-controls"><label>Paper orientation<select id="orientation"><option value="portrait">A4 portrait</option><option value="landscape">A4 landscape</option></select></label><label class="check-label"><input id="mirror" type="checkbox"> Mirror picture</label><label class="check-label"><input id="show-title" type="checkbox" checked> Show design name</label></div>
+          </div>
+          <div class="download-area">
+            <button type="button" id="download-pdf" class="primary-button"><span aria-hidden="true">↓</span> Download A4 PDF <span class="button-note">Ready to print</span></button>
+            <div class="secondary-downloads"><button type="button" id="download-png">Download PNG <span>300 dpi</span></button><span aria-hidden="true">·</span><button type="button" id="download-svg">Download SVG <span>Vector</span></button></div>
+            <p id="export-status" role="status" aria-live="polite">Free to print. No sign-up. Just add crayons.</p>
+          </div>
+        </div>
+      </section>
+      <section id="print-guide" class="print-guide" aria-labelledby="tips-title">
+        <div><p class="eyebrow">FROM SCREEN TO FRIDGE</p><h2 id="tips-title">Ready, set, color.</h2></div>
+        <div><span class="step-number">1</span><h3>Pick & personalize</h3><p>Choose a drawing and a detail level that feels right. Ages are a guide, not a rule.</p></div>
+        <div><span class="step-number">2</span><h3>Print your PDF</h3><p>Use A4 paper and actual size (100%). For Letter paper, use “Fit” to keep the whole page.</p></div>
+        <div><span class="step-number">3</span><h3>Bring on the crayons</h3><p>Grab your favorite colors. There is no wrong way to make it yours.</p></div>
+      </section>
+      <aside class="privacy-note"><span aria-hidden="true">♡</span><div><strong>A happy little space, by design.</strong><p>No accounts, ads, trackers, uploads, or personal questions. Your choices and downloads stay in your browser.</p></div></aside>
+    </main>
+    <footer><a class="brand" href="./">little lines<span class="brand-dot">.</span></a><span>Original outlines. Wonderfully colorful afternoons.</span><span>Made for imagination, not data collection.</span></footer>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

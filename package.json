@@ -1,0 +1,24 @@
+{
+  "name": "kids-coloring-studio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build && node scripts/license-notices.js",
+    "preview": "vite preview --host 127.0.0.1",
+    "test": "node --test tests/catalog.test.js",
+    "test:browser": "playwright test"
+  },
+  "dependencies": {
+    "jspdf": "^4.2.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@napi-rs/canvas": "^1.0.11",
+    "@playwright/test": "^1.58.2",
+    "@xmldom/xmldom": "^0.8.11",
+    "pdfjs-dist": "^6.2.108",
+    "vite": "^7.3.1"
+  }
+}
