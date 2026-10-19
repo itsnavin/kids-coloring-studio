@@ -196,6 +196,15 @@ export function pageSvg(design, options = {}) {
   const size = Math.min(width - 112, height - 154);
   const x = (width - size) / 2;
   const y = (height - size) / 2 + (options.showTitle ? 18 : 0);
+  if (design.kind === 'photo' || design.kind === 'archive') {
+    if (!/^data:image\/png;base64,[A-Za-z0-9+/=]+$/.test(design.rasterData ?? '')) throw new Error('Outline is not ready. Wait for processing or retry.');
+    const availableWidth = width-112, availableHeight = height-190;
+    const scale = Math.min(availableWidth/design.width, availableHeight/design.height);
+    const w=design.width*scale, h=design.height*scale;
+    const px=(width-w)/2, py=(height-h)/2;
+    const credit = design.kind === 'archive' ? `NPS | Public domain (U.S.) | ${design.sourceId}` : 'Photo-derived outline - raster image, not vector paths';
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="${landscape ? 297 : 210}mm" height="${landscape ? 210 : 297}mm" viewBox="0 0 ${width} ${height}"><title>${escapeXml(design.name)}</title><desc>${escapeXml(design.kind === 'archive' ? `${design.author}. ${design.rights} Source: ${design.source}. ${design.modifications}` : 'Processed locally in your browser. Raster image embedded inside SVG.')}</desc><rect width="${width}" height="${height}" fill="white"/>${options.showTitle ? `<text x="${width/2}" y="64" text-anchor="middle" fill="black" font-family="sans-serif" font-size="22">${escapeXml(design.name)}</text>` : ''}<image x="${px}" y="${py}" width="${w}" height="${h}" href="${design.rasterData}"${options.mirror ? ` transform="translate(${width} 0) scale(-1 1)"` : ''}/><text x="${width/2}" y="${height-42}" text-anchor="middle" fill="black" font-family="sans-serif" font-size="12">${escapeXml(credit)}</text></svg>`;
+  }
   const [frameX, frameY, frameWidth, frameHeight] = design.frame;
   const frame = options.mirror ? [600 - frameX - frameWidth, frameY, frameWidth, frameHeight] : design.frame;
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${landscape ? 297 : 210}mm" height="${landscape ? 210 : 297}mm" viewBox="0 0 ${width} ${height}"><title>${escapeXml(design.name)} coloring page</title><rect width="${width}" height="${height}" fill="white"/>${options.showTitle ? `<text x="${width / 2}" y="${y - 25}" text-anchor="middle" fill="black" font-family="sans-serif" font-size="22">${escapeXml(design.name)}</text>` : ''}<svg x="${x}" y="${y}" width="${size}" height="${size}" viewBox="${frame.join(' ')}">${artwork(design, options)}</svg></svg>`;

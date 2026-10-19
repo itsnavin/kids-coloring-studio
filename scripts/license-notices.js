@@ -12,3 +12,5 @@ for (const [directory, info] of Object.entries(lock.packages)) {
   for (const file of files) notices.push(await readFile(path.join(directory, file.name), 'utf8'));
 }
 await writeFile(path.join('dist', 'THIRD-PARTY-LICENSES.txt'), notices.join('\n\n'));
+const artwork = JSON.parse(await readFile(path.join('src', 'open-art.json'), 'utf8'));
+await writeFile(path.join('dist', 'ARTWORK-ATTRIBUTION.json'), JSON.stringify(artwork, null, 2));

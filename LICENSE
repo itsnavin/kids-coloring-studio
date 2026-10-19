@@ -27,3 +27,11 @@ redistribute these illustrations without attribution.
 Full legal text: https://creativecommons.org/publicdomain/zero/1.0/legalcode
 
 Third-party packages retain their own licenses; see THIRD_PARTY_NOTICES.md.
+
+National Park Service artwork exception:
+The 22 bundled scientific drawings in public/art/ are not Little Lines originals.
+They are recorded as U.S. government works (PD-USGov-NPS), public domain in the
+United States. Rights outside the United States may differ. No claim to original
+U.S. Government works. Per-image authors, source URLs, rights, hashes, and
+modifications are recorded in src/open-art.json and published in
+ARTWORK-ATTRIBUTION.json. No NPS endorsement or affiliation is implied.

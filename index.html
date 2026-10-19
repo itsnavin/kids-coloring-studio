@@ -19,30 +19,53 @@
       <section class="intro" aria-labelledby="intro-title">
         <div class="intro-copy">
           <p class="eyebrow"><span aria-hidden="true">✦</span> MADE FOR CRAYON TIME</p>
-          <h1 id="intro-title">A little outline.<br>A whole lot of <em>possibility.</em></h1>
-          <p>Pick a picture, make it your own, and print.<br>Let their imagination color the rest.</p>
+          <h1 id="intro-title">Real-world wonders.<br>Ready for <em>their colors.</em></h1>
+          <p>Explore original drawings and realistic nature pages,<br>or turn your own photo into a printable outline.</p>
         </div>
-        <div class="intro-note"><span aria-hidden="true" class="sun">☀</span><strong>Less scrolling.<br>More scribbling.</strong><span>12 original drawings.<br>Endless colorful adventures.</span></div>
+        <div class="intro-note"><span aria-hidden="true" class="sun">☀</span><strong>Look closer.<br>Color bigger.</strong><span>34 distinct gallery pages.<br>Your photos, processed locally.</span></div>
       </section>
       <section id="studio" class="workspace" aria-label="Coloring studio">
         <div class="gallery-panel">
-          <div class="section-heading"><div><p class="eyebrow">01 / FIND A LITTLE INSPIRATION</p><h2>What shall we color?</h2></div><span id="design-count" class="count">12 designs</span></div>
+          <div class="section-heading"><div><p class="eyebrow">01 / FIND A LITTLE INSPIRATION</p><h2>What shall we color?</h2></div><span id="design-count" class="count">34 designs</span></div>
+          <div class="mode-tabs" role="group" aria-label="Picture source"><button type="button" id="gallery-mode" aria-pressed="true">Explore gallery</button><button type="button" id="photo-mode" aria-pressed="false">Photo to outline</button></div>
+          <div id="gallery-tools">
+          <label class="search-label" for="gallery-search">Find a picture<input id="gallery-search" type="search" placeholder="Try horse, dinosaur, robot…" maxlength="80"></label>
+          <p class="collection-note">12 original illustrations + 22 realistic NPS nature drawings. A curated collection, not thousands of pages. Detailed nature art is best for older artists.</p>
           <div id="categories" class="categories" role="group" aria-label="Filter designs by category"></div>
           <div id="gallery" class="gallery" role="group" aria-label="Choose a coloring design"></div>
-          <p class="gallery-foot"><span aria-hidden="true">♡</span> Drawn from scratch. Ready for little artists.</p>
+          <div class="pagination"><button type="button" id="previous-page">← Previous</button><span id="page-number" role="status"></span><button type="button" id="next-page">Next →</button></div>
+          <p id="gallery-empty" hidden>No matching pictures. Try another name or category.</p>
+          </div>
+          <section id="photo-tools" hidden aria-labelledby="photo-heading">
+            <h3 id="photo-heading">Your photo, a new possibility.</h3>
+            <p>Choose a clear subject against a plain background. Photos stay in browser memory and are never uploaded. Only use images you have permission to use; avoid private or sensitive photos.</p>
+            <label class="upload-label" for="photo-file">Choose a JPEG or PNG<input id="photo-file" type="file" accept="image/jpeg,image/png" aria-describedby="photo-limits"></label>
+            <p id="photo-limits">Up to 10 MB, 16 megapixels, 8000 px per side. HEIC, WebP, GIF and SVG are not supported. Processed at up to 1280 px on the longest side.</p>
+            <button type="button" id="clear-photo">Clear photo & return to gallery</button>
+            <div class="photo-sliders">
+              <label for="edge-threshold">Edge sensitivity <output id="edge-value">35</output><input id="edge-threshold" type="range" min="5" max="100" value="35"><small>Lower finds more detail; higher keeps stronger edges.</small></label>
+              <label for="smoothing">Smooth texture <output id="smoothing-value">2</output><input id="smoothing" type="range" min="0" max="5" value="2"><small>Higher reduces fine texture before finding edges.</small></label>
+              <label for="cleanup">Remove small specks <output id="cleanup-value">14</output><input id="cleanup" type="range" min="0" max="60" value="14"><small>Higher removes more tiny isolated marks.</small></label>
+            </div>
+            <p class="collection-note">This is edge detection, not AI illustration. Fur, shadows and busy backgrounds may need tuning; results are not guaranteed to have clean, closed coloring regions. Use the gallery for artist-made pages.</p>
+          </section>
+          <p id="image-status" role="status" aria-live="polite"></p>
+          <p class="gallery-foot"><span aria-hidden="true">♡</span> Original drawings, nature studies & your imagination.</p>
         </div>
         <div class="studio-panel">
           <div class="section-heading"><div><p class="eyebrow">02 / MAKE IT YOURS</p><h2>Your creative corner</h2></div><span class="paper-badge" id="paper-badge">A4 · Portrait</span></div>
           <div class="preview-desk"><div id="preview" class="preview" role="img" aria-label="Coloring page preview"></div><span class="desk-label">A blank page. A big adventure.</span></div>
           <div class="design-heading"><h3 id="selected-name"></h3><span id="selected-category"></span></div>
+          <p id="art-credit" class="art-credit"></p>
           <div class="controls">
-            <fieldset><legend>Detail level</legend><div class="segmented"><button type="button" data-detail="simple" aria-pressed="true">Little artists <small>Ages 3+ · simple</small></button><button type="button" data-detail="detailed" aria-pressed="false">Growing artists <small>Ages 6+ · more detail</small></button></div></fieldset>
+            <fieldset id="detail-field"><legend>Detail level</legend><div class="segmented"><button type="button" data-detail="simple" aria-pressed="true">Little artists <small>Ages 3+ · simple</small></button><button type="button" data-detail="detailed" aria-pressed="false">Growing artists <small>Ages 6+ · more detail</small></button></div></fieldset>
+            <p id="fixed-detail" hidden>Artist-made nature drawing: fixed detail. Outline thickness can strengthen its original lines.</p>
             <div class="line-control"><label for="line-weight">Outline thickness <output id="weight-value" for="line-weight">5</output></label><input id="line-weight" type="range" min="3" max="8" value="5" step="1"><div class="range-labels"><span>Fine</span><span>Bold</span></div></div>
             <div class="extra-controls"><label>Paper orientation<select id="orientation"><option value="portrait">A4 portrait</option><option value="landscape">A4 landscape</option></select></label><label class="check-label"><input id="mirror" type="checkbox"> Mirror picture</label><label class="check-label"><input id="show-title" type="checkbox" checked> Show design name</label></div>
           </div>
           <div class="download-area">
             <button type="button" id="download-pdf" class="primary-button"><span aria-hidden="true">↓</span> Download A4 PDF <span class="button-note">Ready to print</span></button>
-            <div class="secondary-downloads"><button type="button" id="download-png">Download PNG <span>300 dpi</span></button><span aria-hidden="true">·</span><button type="button" id="download-svg">Download SVG <span>Vector</span></button></div>
+            <div class="secondary-downloads"><button type="button" id="download-png">Download PNG <span>A4 image</span></button><span aria-hidden="true">·</span><button type="button" id="download-svg">Download SVG <span id="svg-kind">Vector</span></button></div>
             <p id="export-status" role="status" aria-live="polite">Free to print. No sign-up. Just add crayons.</p>
           </div>
         </div>
@@ -53,7 +76,7 @@
         <div><span class="step-number">2</span><h3>Print your PDF</h3><p>Use A4 paper and actual size (100%). For Letter paper, use “Fit” to keep the whole page.</p></div>
         <div><span class="step-number">3</span><h3>Bring on the crayons</h3><p>Grab your favorite colors. There is no wrong way to make it yours.</p></div>
       </section>
-      <aside class="privacy-note"><span aria-hidden="true">♡</span><div><strong>A happy little space, by design.</strong><p>No accounts, ads, trackers, uploads, or personal questions. Your choices and downloads stay in your browser.</p></div></aside>
+      <aside class="privacy-note"><span aria-hidden="true">♡</span><div><strong>A happy little space, by design.</strong><p>No accounts, ads, trackers, or photo uploads. Bundled artwork loads from this site; source links leave the site only when you click them. Photos and settings stay in browser memory. Reload or clear to discard them.</p></div></aside>
     </main>
     <footer><a class="brand" href="./">little lines<span class="brand-dot">.</span></a><span>Original outlines. Wonderfully colorful afternoons.</span><span>Made for imagination, not data collection.</span></footer>
     <script type="module" src="./src/main.js"></script>

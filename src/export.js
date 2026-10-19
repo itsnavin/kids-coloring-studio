@@ -35,7 +35,7 @@ export async function createDownload(design, options, format) {
   const landscape = options.orientation === 'landscape';
   const pdf = new jsPDF({ orientation: landscape ? 'landscape' : 'portrait', unit: 'mm', format: 'a4', compress: true });
   pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, landscape ? 297 : 210, landscape ? 210 : 297, undefined, 'FAST');
-  pdf.setProperties({ title: `${design.name} - Little Lines`, author: 'Little Lines', subject: 'Original printable coloring outline' });
+  pdf.setProperties({ title: `${design.name} - Little Lines`, author: design.kind === 'archive' ? design.author : 'Little Lines', subject: design.kind === 'archive' ? `${design.rights} Source: ${design.source}` : design.kind === 'photo' ? 'Locally processed photo-derived raster outline' : 'Original printable coloring outline' });
   return pdf.output('blob');
 }
 
